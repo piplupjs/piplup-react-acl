@@ -24,7 +24,9 @@ lived as copied source inside a private application. The 3.x API is removed — 
   wildcards, for screens that grant permissions.
 - **Standalone check functions** — `hasPermission`, `hasRole`, `hasAllPermissions`,
   `hasAnyPermissions` — usable outside React in navigation filters, loaders and server code.
-- **`withCan`** wraps a component so it renders only when a permission is held.
+- **`withCan`** wraps a component so it renders only when the check passes, taking the same options
+  as `Can` — `Omit<CanProps, 'children'>` — so it cannot drift from it. A single permission can be
+  passed positionally instead.
 - **`createGetRolePermissionAccess`** summarises how much of an assignable permission set a role
   covers, for admin screens.
 - **`loading` now defaults to `principal === undefined`**, so the common "not fetched yet" case

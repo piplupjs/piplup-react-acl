@@ -66,6 +66,24 @@ const visible = items.filter((item) =>
 );
 ```
 
+To gate a whole component rather than a piece of markup, wrap it. `withCan`
+takes the same options as `Can`:
+
+```tsx
+import { withCan } from '@piplup/react-acl';
+
+const BillingPanel = withCan(Panel, {
+  permission: ['billing:read', 'billing:write'],
+  mode: 'ANY',
+  role: 'admin',
+  loading: <Skeleton />,
+  fallback: <NoAccess />,
+});
+
+// A single permission can be passed directly, with an optional fallback.
+const AdminPanel = withCan(Panel, 'admin:manage');
+```
+
 ## Wildcards
 
 Permission names are split into segments on `:`. A principal is granted a
