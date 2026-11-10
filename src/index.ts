@@ -65,7 +65,7 @@ export type Role = keyof RolesDef extends never ? string : Extract<keyof RolesDe
 
 // ─── Public API ──────────────────────────────────────────────────────────────
 
-export { Can, withCan, type CanProps } from './can';
+export { Can, withCan, type CanProps, type WithCanOptions } from './can';
 export {
   AccessControlProvider,
   useAccessControl,

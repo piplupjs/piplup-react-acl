@@ -188,6 +188,53 @@ describe('withCan', () => {
   it('names the wrapper after the component', () => {
     expect(withCan(Panel, 'invoice:read').displayName).toBe('withCan(Panel)');
   });
+
+  it('accepts an array of permissions in the shorthand form', () => {
+    const Guarded = withCan(Panel, ['invoice:read', 'invoice:write'], 'denied');
+    renderWithin(<Guarded label="panel" />, member);
+
+    // The shorthand still defaults to ALL, like `Can`.
+    expect(screen.getByText('denied')).toBeInTheDocument();
+  });
+
+  describe('options form', () => {
+    it('passes the whole Can surface through', () => {
+      const Guarded = withCan(Panel, {
+        fallback: 'denied',
+        mode: 'ANY',
+        permission: ['invoice:read', 'invoice:write'],
+        role: 'member',
+      });
+      renderWithin(<Guarded label="panel" />, member);
+
+      expect(screen.getByText('panel')).toBeInTheDocument();
+    });
+
+    it('honours role on its own', () => {
+      const Guarded = withCan(Panel, { fallback: 'denied', role: 'admin' });
+      renderWithin(<Guarded label="panel" />, member);
+
+      expect(screen.getByText('denied')).toBeInTheDocument();
+    });
+
+    it('honours the loading slot', () => {
+      const Guarded = withCan(Panel, { loading: 'pending', permission: 'invoice:read' });
+      renderWithin(<Guarded label="panel" />, undefined);
+
+      expect(screen.getByText('pending')).toBeInTheDocument();
+    });
+
+    it('renders the component when nothing is required', () => {
+      const Guarded = withCan(Panel, {});
+      renderWithin(<Guarded label="panel" />, member);
+
+      expect(screen.getByText('panel')).toBeInTheDocument();
+    });
+
+    it('names the wrapper after the component', () => {
+      expect(withCan(Panel, { permission: 'invoice:read' }).displayName).toBe('withCan(Panel)');
+    });
+  });
 });
 
 describe('useAccessControl', () => {

@@ -52,8 +52,26 @@ export function Can(props: CanProps): React.ReactElement {
   return <React.Fragment>{children}</React.Fragment>;
 }
 
+/** Everything {@link Can} accepts except the children it wraps. */
+export type WithCanOptions = Omit<CanProps, 'children'>;
+
 /**
- * Wraps a component so it renders only when the principal holds `permission`.
+ * Wraps a component in {@link Can} so it renders only when the principal passes the check.
+ *
+ * Takes the same options as `Can`, so a wrapped component can require a role, pick a match mode and
+ * show a placeholder while the principal loads:
+ *
+ * ```tsx
+ * const AdminPanel = withCan(Panel, {
+ *   permission: ['billing:read', 'billing:write'],
+ *   mode: 'ANY',
+ *   role: 'admin',
+ *   loading: <Skeleton />,
+ *   fallback: <NoAccess />,
+ * });
+ * ```
+ *
+ * A single permission can be passed directly, with an optional fallback:
  *
  * ```tsx
  * const AdminPanel = withCan(Panel, 'admin:manage');
@@ -61,12 +79,26 @@ export function Can(props: CanProps): React.ReactElement {
  */
 export function withCan<P extends object>(
   Component: React.ComponentType<P>,
+  options: WithCanOptions,
+): React.FunctionComponent<P>;
+export function withCan<P extends object>(
+  Component: React.ComponentType<P>,
   permission: Permission | readonly Permission[],
-  fallback: React.ReactNode = null,
-) {
+  fallback?: React.ReactNode,
+): React.FunctionComponent<P>;
+export function withCan<P extends object>(
+  Component: React.ComponentType<P>,
+  optionsOrPermission: WithCanOptions | Permission | readonly Permission[],
+  fallback?: React.ReactNode,
+): React.FunctionComponent<P> {
+  const options: WithCanOptions =
+    typeof optionsOrPermission === 'string' || Array.isArray(optionsOrPermission)
+      ? { fallback, permission: optionsOrPermission as Permission | readonly Permission[] }
+      : (optionsOrPermission as WithCanOptions);
+
   function CanWrappedComponent(props: P) {
     return (
-      <Can fallback={fallback} permission={permission}>
+      <Can {...options}>
         <Component {...props} />
       </Can>
     );
