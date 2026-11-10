@@ -8,6 +8,10 @@ on:
         type: choice
         options: [patch, minor, major]
         default: patch
+      tests:
+        description: Run tests before publishing
+        type: boolean
+        default: true
       changelog:
         description: Update CHANGELOG.md
         type: boolean
@@ -54,7 +58,7 @@ jobs:
         run: >
           npm run release --
           --bump ${{ inputs.bump }}
-          --no-tests
+          ${{ inputs.tests && '--tests' || '--no-tests' }}
           ${{ inputs.changelog && '--changelog' || '--no-changelog' }}
           ${{ inputs.dry-run && '--dry-run' || '--push' }}
 
