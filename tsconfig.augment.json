@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // A project of its own because module augmentation is global: `test/augmentation.ts` narrows
+  // Permission and Role for every file in whatever program includes it, which would break the
+  // other test files.
+  //
+  // It is deliberately NOT referenced from tsconfig.json. `tsc --build` shares programs between
+  // referenced projects that claim the same root files, which leaked this augmentation into the
+  // spec project and made every arbitrary permission string a type error. The `typecheck` script
+  // runs it as a separate `tsc -p` invocation instead.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "rootDir": ".",
+    "exactOptionalPropertyTypes": false,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "composite": false,
+    "incremental": false,
+    "types": ["vite/client"]
+  },
+  "include": ["test/augmentation.ts"]
+}

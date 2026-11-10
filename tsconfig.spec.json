@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // Type-checks the test files, which tsconfig.lib.json deliberately excludes from the build.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "rootDir": ".",
+    "exactOptionalPropertyTypes": false,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "composite": false,
+    "incremental": false,
+    "types": ["node", "vite/client", "vitest/globals"]
+  },
+  // Only the test files are root files here. The sources they import come into the program as
+  // dependencies, so this project never claims ownership of src/** alongside tsconfig.lib.json.
+  "include": ["src/**/*.spec.ts", "src/**/*.spec.tsx", "test/setup.ts"]
+}

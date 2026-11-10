@@ -82,6 +82,9 @@ jobs:
       - name: Type-check
         run: npm run typecheck
 
+      - name: Test
+        run: npm test
+
       - name: Report the result
         if: always() && env.SAME_REPO == 'true'
         run: >
