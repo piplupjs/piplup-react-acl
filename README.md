@@ -56,7 +56,9 @@ function Toolbar() {
 ```
 
 The checks are also plain functions, so navigation filters, loaders and server
-code can use them without React:
+code can use them without React. That includes React Server Components, server
+actions and route handlers: only the provider, hook and components are marked
+`'use client'`.
 
 ```ts
 import { hasPermission } from '@piplup/react-acl';

@@ -65,13 +65,18 @@ export type Role = keyof RolesDef extends never ? string : Extract<keyof RolesDe
 
 // ─── Public API ──────────────────────────────────────────────────────────────
 
-export { Can, withCan, type CanProps, type WithCanOptions } from './can';
+// The components and hook come through `./client`, which the build marks `'use client'`. Everything
+// else here stays free of the directive so it can be called from React Server Components.
 export {
   AccessControlProvider,
+  Can,
   useAccessControl,
+  withCan,
   type AccessControlContextValue,
   type AccessControlProviderProps,
-} from './context';
+  type CanProps,
+  type WithCanOptions,
+} from './client';
 export {
   createGetRolePermissionAccess,
   hasAllPermissions,
