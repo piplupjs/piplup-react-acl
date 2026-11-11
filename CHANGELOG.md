@@ -1,3 +1,15 @@
+## 4.1.0
+
+### 🩹 Fixes
+
+- **The check functions now work in React Server Components.** 4.0.0 put `'use client'` at the top
+  of its single bundled file, so in the Next.js App Router every export became a client reference
+  and `hasPermission`, `hasRole`, `hasAllPermissions`, `hasAnyPermissions` and
+  `createGetRolePermissionAccess` threw when called from a server component, server action or
+  route handler. The build now emits the provider, hook and components as a separate `'use client'`
+  chunk and keeps the directive off everything else. The import path is unchanged: everything is
+  still imported from `@piplup/react-acl`. Plain Node and Express were not affected.
+
 ## 4.0.0
 
 This package is now the single, versioned implementation of an access-control API that previously
