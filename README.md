@@ -5,6 +5,10 @@
 Role and permission checks for React, with hierarchical wildcard grants and
 permission names your editor can autocomplete.
 
+**[Documentation](https://www.piplupjs.com/docs/react-acl/installation)** ·
+[Role-based access control in React](https://www.piplupjs.com/docs/react-role-based-access-control)
+· [react-acl vs CASL](https://www.piplupjs.com/docs/react-acl-vs-casl)
+
 ## Installation
 
 ```bash
@@ -188,4 +192,12 @@ Behaviour changes to check for, beyond the renames:
 
 ## Documentation
 
-For the full documentation, see the [website](https://www.piplupjs.com).
+- [Installation](https://www.piplupjs.com/docs/react-acl/installation)
+- [Role-based access control in React](https://www.piplupjs.com/docs/react-role-based-access-control):
+  a step-by-step guide, from loading the user's access to guarding routes
+- [Permissions and wildcards](https://www.piplupjs.com/docs/react-acl/permissions)
+- [`Can`](https://www.piplupjs.com/docs/react-acl/components/can) and
+  [`useAccessControl`](https://www.piplupjs.com/docs/react-acl/hooks/use-access-control)
+- [Check functions](https://www.piplupjs.com/docs/react-acl/functions/overview),
+  including use in React Server Components
+- [react-acl vs CASL](https://www.piplupjs.com/docs/react-acl-vs-casl)

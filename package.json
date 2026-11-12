@@ -2,13 +2,21 @@
   "name": "@piplup/react-acl",
   "version": "4.1.0",
   "private": false,
-  "description": "A lightweight React library for managing access control lists (ACL) in your application",
+  "description": "Role and permission-based access control for React, with wildcard grants, a loading state and typed permission names.",
   "keywords": [
+    "access control",
+    "authorization",
+    "permissions",
+    "rbac",
     "react access control",
     "react permission based access",
-    "react-acl"
+    "react permissions",
+    "react rbac",
+    "react-acl",
+    "role-based access control",
+    "roles"
   ],
-  "homepage": "https://www.piplupjs.com",
+  "homepage": "https://www.piplupjs.com/docs/react-acl/installation",
   "license": "MIT",
   "repository": {
     "url": "git+https://github.com/piplupjs/piplup-react-acl.git"
