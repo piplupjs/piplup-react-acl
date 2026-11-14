@@ -3,10 +3,10 @@
 // lets the plain check functions in `./lib` run in React Server Components: a `'use client'` file
 // turns every one of its exports into a client reference, so it must never contain them.
 
-export { Can, withCan, type CanProps, type WithCanOptions } from './can';
+export { Can, type CanProps, withCan, type WithCanOptions } from './can';
 export {
-  AccessControlProvider,
-  useAccessControl,
   type AccessControlContextValue,
+  AccessControlProvider,
   type AccessControlProviderProps,
+  useAccessControl,
 } from './context';

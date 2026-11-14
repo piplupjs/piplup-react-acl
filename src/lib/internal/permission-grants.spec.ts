@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { permissionGrants } from './permission-grants';
 
 describe('permissionGrants', () => {

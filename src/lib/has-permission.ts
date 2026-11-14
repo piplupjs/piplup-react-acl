@@ -1,7 +1,8 @@
-import type { Permission } from '../index';
-import type { AccessPrincipal, PermissionMatchMode } from '../types';
 import { hasAllPermissions } from './has-all-permissions';
 import { hasAnyPermissions } from './has-any-permission';
+
+import type { Permission } from '../index';
+import type { AccessPrincipal, PermissionMatchMode } from '../types';
 
 /**
  * Whether a principal holds the required permissions.

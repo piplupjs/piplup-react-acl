@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { useAccessControl } from './context';
+
 import type { Permission, Role } from './index';
 import type { PermissionMatchMode } from './types';
 
@@ -18,7 +20,7 @@ export type CanProps = {
   /** The permissions to require. Left out, no permission is required. */
   permission?: Permission | readonly Permission[];
   /** The roles to require. Left out, no role is required. */
-  role?: Role | readonly Role[];
+  role?: readonly Role[] | Role;
 };
 
 /**
@@ -88,7 +90,7 @@ export function withCan<P extends object>(
 ): React.FunctionComponent<P>;
 export function withCan<P extends object>(
   Component: React.ComponentType<P>,
-  optionsOrPermission: WithCanOptions | Permission | readonly Permission[],
+  optionsOrPermission: Permission | readonly Permission[] | WithCanOptions,
   fallback?: React.ReactNode,
 ): React.FunctionComponent<P> {
   const options: WithCanOptions =

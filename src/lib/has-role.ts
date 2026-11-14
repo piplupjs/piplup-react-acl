@@ -10,7 +10,7 @@ import type { AccessPrincipal, PermissionMatchMode } from '../types';
  */
 export function hasRole(
   principal: AccessPrincipal,
-  role: Role | readonly Role[],
+  role: readonly Role[] | Role,
   matchMode: PermissionMatchMode = 'ANY',
 ): boolean {
   const required = typeof role === 'string' ? [role] : role;

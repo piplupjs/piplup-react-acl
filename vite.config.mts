@@ -1,8 +1,10 @@
 import { readFileSync } from 'node:fs';
 import * as path from 'node:path';
+
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+
 import packageJSON from './package.json' with { type: 'json' };
 
 const license = readFileSync(path.resolve('./LICENSE'), {
@@ -29,9 +31,7 @@ const outputs = (
     ['cjs', 'js'],
   ] as const
 ).map(([format, extension]) => ({
-  format,
   banner,
-  entryFileNames: `[name].${extension}`,
   chunkFileNames: `[name].${extension}`,
   // The check functions get a chunk of their own, without the directive. Left to itself the bundler
   // would put them in one shared chunk with the components, which `index` would then re-export
@@ -39,6 +39,8 @@ const outputs = (
   codeSplitting: {
     groups: [{ name: 'checks', test: /[\\/]src[\\/](lib[\\/]|types\.ts)/ }],
   },
+  entryFileNames: `[name].${extension}`,
+  format,
   sourcemapExcludeSources: true,
 }));
 
@@ -50,22 +52,22 @@ export default defineConfig({
     emptyOutDir: true,
     lib: {
       entry: {
-        index: 'src/index.ts',
         client: 'src/client.ts',
+        index: 'src/index.ts',
       },
       name: 'piplupReactAcl',
     },
     minify: true,
     outDir: './dist',
     reportCompressedSize: true,
-    sourcemap: false,
     rollupOptions: {
       external,
+      output: outputs,
       // Lets `index` import the components from the `client` entry chunk itself rather than from a
       // shared chunk that both entries re-export, which would carry no directive.
       preserveEntrySignatures: 'allow-extension',
-      output: outputs,
     },
+    sourcemap: false,
   },
   plugins: [
     react(),

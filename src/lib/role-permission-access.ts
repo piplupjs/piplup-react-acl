@@ -13,9 +13,9 @@ export function createGetRolePermissionAccess(assignablePermissions: AssignableP
   ): RolePermissionAccess {
     if (permissionSlugs.includes('*')) {
       return {
+        description: 'This role is granted all permissions through wildcard access.',
         kind: 'wildcard',
         label: 'Wildcard access',
-        description: 'This role is granted all permissions through wildcard access.',
       };
     }
 
@@ -26,24 +26,24 @@ export function createGetRolePermissionAccess(assignablePermissions: AssignableP
 
     if (assignedCount === assignablePermissions.length) {
       return {
+        description: 'This role is granted every assignable permission individually.',
         kind: 'all',
         label: 'All permissions',
-        description: 'This role is granted every assignable permission individually.',
       };
     }
 
     if (assignedCount === 0) {
       return {
+        description: 'This role has no assigned permissions.',
         kind: 'none',
         label: 'No permissions',
-        description: 'This role has no assigned permissions.',
       };
     }
 
     return {
+      description: 'This role has a limited set of assigned permissions.',
       kind: 'partial',
       label: `${assignedCount} of ${assignablePermissions.length} permissions`,
-      description: 'This role has a limited set of assigned permissions.',
     };
   };
 }

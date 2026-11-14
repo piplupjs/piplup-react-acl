@@ -1,7 +1,9 @@
 import * as React from 'react';
-import type { Permission, Role } from './index';
+
 import { hasPermission } from './lib/has-permission';
 import { hasRole as hasRoleCheck } from './lib/has-role';
+
+import type { Permission, Role } from './index';
 import type { AccessPrincipal, PermissionMatchMode } from './types';
 
 export type AccessControlContextValue = {
@@ -14,7 +16,7 @@ export type AccessControlContextValue = {
    * Whether the principal holds the given roles. Defaults to `ANY`.
    * Always `false` while loading.
    */
-  hasRole: (role: Role | readonly Role[], matchMode?: PermissionMatchMode) => boolean;
+  hasRole: (role: readonly Role[] | Role, matchMode?: PermissionMatchMode) => boolean;
   /** Whether the principal is still loading. */
   loading: boolean;
   /** The principal as given to the provider, for passing to the standalone check functions. */
@@ -71,7 +73,7 @@ export function AccessControlProvider(props: AccessControlProviderProps) {
   );
 
   const hasRole = React.useCallback(
-    (role: Role | readonly Role[], matchMode?: PermissionMatchMode): boolean =>
+    (role: readonly Role[] | Role, matchMode?: PermissionMatchMode): boolean =>
       loading ? false : hasRoleCheck(principal, role, matchMode),
     [loading, principal],
   );
