@@ -1,5 +1,6 @@
-import type { Permission } from '../index';
 import { permissionGrants } from './internal/permission-grants';
+
+import type { Permission } from '../index';
 
 /**
  * Whether a granted permission list covers at least one of the required permissions.

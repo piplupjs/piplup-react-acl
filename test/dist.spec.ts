@@ -12,6 +12,8 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import * as path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
+import { describe, expect, it } from 'vitest';
+
 const dist = path.resolve(__dirname, '../dist');
 const built = existsSync(path.join(dist, 'index.mjs'));
 

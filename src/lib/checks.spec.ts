@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import type { AccessPrincipal } from '../types';
-import { createGetRolePermissionAccess } from './role-permission-access';
+
 import { hasAllPermissions } from './has-all-permissions';
 import { hasAnyPermissions } from './has-any-permission';
 import { hasPermission } from './has-permission';
 import { hasRole } from './has-role';
+import { createGetRolePermissionAccess } from './role-permission-access';
+
+import type { AccessPrincipal } from '../types';
 
 const principal: AccessPrincipal = {
   permissions: ['invoice:read', 'report:*'],

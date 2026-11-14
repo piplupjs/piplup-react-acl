@@ -15,10 +15,5 @@
   },
   // Only the test files are root files here. The sources they import come into the program as
   // dependencies, so this project never claims ownership of src/** alongside tsconfig.lib.json.
-  "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.spec.tsx",
-    "test/**/*.spec.ts",
-    "test/setup.ts"
-  ]
+  "include": ["src/**/*.spec.ts", "src/**/*.spec.tsx", "test/**/*.spec.ts", "test/setup.ts"]
 }

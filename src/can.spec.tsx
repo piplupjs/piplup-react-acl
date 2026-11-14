@@ -1,8 +1,11 @@
 import * as React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { Can, withCan } from './can';
 import { AccessControlProvider, useAccessControl } from './context';
+
 import type { AccessPrincipal } from './types';
 
 function renderWithin(
