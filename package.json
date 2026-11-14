@@ -57,6 +57,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
+    "@piplup/code-infra": "^2.0.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^25.9.9",
@@ -67,8 +68,8 @@
     "@vitejs/plugin-react": "^6.0.1",
     "husky": "^9.1.7",
     "jsdom": "^30.0.1",
-    "oxfmt": "^0.66.0",
-    "oxlint": "^1.88.0",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.93.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "semver": "^7.8.5",
